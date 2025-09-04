@@ -9,12 +9,30 @@ import {
   AccordionTrigger,
 } from "../../ui/accordion";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { experienceData } from "@/app/api/career/route";
+export type ExperienceData = {
+  id: number;
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  duration: string;
+  type: string;
+  mode: string;
+  responsibilities: string[];
+  companyLogo: string;
+};
 
 const CardCareer = () => {
   const [openId, setOpenId] = useState<string | undefined>(undefined);
+  const [experienceData, setExperienceData] = useState<ExperienceData[]>([]);
+
+  useEffect(() => {
+    fetch("/api/career")
+      .then((res) => res.json())
+      .then((data) => setExperienceData(data));
+  }, []);
 
   return (
     <>

@@ -12,10 +12,43 @@ import {
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-import { TeamData } from "@/app/api/team/route";
+
+export type Education = {
+  degree: string;
+  institution: string;
+  graduation_year: number;
+  phone: string;
+};
+
+export type TeamMember = {
+  id: number;
+  name: string;
+  photo: string;
+  roles: string[];
+  description: string;
+  education: Education;
+  location: string;
+  level: string;
+  tools: number[];
+  email: string;
+};
+
+export type TeamData = {
+  members: TeamMember[];
+  education: Education[];
+};
 
 const CardSenior = () => {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+
+  useEffect(() => {
+    fetch("/api/team")
+      .then((res) => res.json())
+      .then((data) => setTeamMembers(data));
+  }, []);
+
   return (
     <Swiper
       spaceBetween={30}
@@ -45,7 +78,7 @@ const CardSenior = () => {
       modules={[Autoplay]}
       className="mySwiper w-full h-full "
     >
-      {TeamData.map((member) => (
+      {teamMembers.map((member) => (
         <SwiperSlide key={member.id}>
           <Link href={`/team/detail-team/${member.id}`}>
             <Card className="pt-0">
@@ -134,9 +167,9 @@ const CardJunior = () => {
                 {(() => {
                   const words =
                     `John adalah seorang Software Engineer berpengalaman dengan keahlian
-                      dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
-                      dan berbagai teknologi backend. Ia selalu fokus pada clean code,
-                      skalabilitas, dan performa aplikasi.`.split(" ");
+                        dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
+                        dan berbagai teknologi backend. Ia selalu fokus pada clean code,
+                        skalabilitas, dan performa aplikasi.`.split(" ");
 
                   const preview = words.slice(0, 20).join(" ");
                   return preview + (words.length > 20 ? "..." : "");
@@ -168,9 +201,9 @@ const CardJunior = () => {
                 {(() => {
                   const words =
                     `John adalah seorang Software Engineer berpengalaman dengan keahlian
-                      dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
-                      dan berbagai teknologi backend. Ia selalu fokus pada clean code,
-                      skalabilitas, dan performa aplikasi.`.split(" ");
+                        dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
+                        dan berbagai teknologi backend. Ia selalu fokus pada clean code,
+                        skalabilitas, dan performa aplikasi.`.split(" ");
 
                   const preview = words.slice(0, 20).join(" ");
                   return preview + (words.length > 20 ? "..." : "");
@@ -202,9 +235,9 @@ const CardJunior = () => {
                 {(() => {
                   const words =
                     `John adalah seorang Software Engineer berpengalaman dengan keahlian
-                      dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
-                      dan berbagai teknologi backend. Ia selalu fokus pada clean code,
-                      skalabilitas, dan performa aplikasi.`.split(" ");
+                        dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
+                        dan berbagai teknologi backend. Ia selalu fokus pada clean code,
+                        skalabilitas, dan performa aplikasi.`.split(" ");
 
                   const preview = words.slice(0, 20).join(" ");
                   return preview + (words.length > 20 ? "..." : "");
@@ -236,9 +269,9 @@ const CardJunior = () => {
                 {(() => {
                   const words =
                     `John adalah seorang Software Engineer berpengalaman dengan keahlian
-                      dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
-                      dan berbagai teknologi backend. Ia selalu fokus pada clean code,
-                      skalabilitas, dan performa aplikasi.`.split(" ");
+                        dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
+                        dan berbagai teknologi backend. Ia selalu fokus pada clean code,
+                        skalabilitas, dan performa aplikasi.`.split(" ");
 
                   const preview = words.slice(0, 20).join(" ");
                   return preview + (words.length > 20 ? "..." : "");
@@ -270,9 +303,9 @@ const CardJunior = () => {
                 {(() => {
                   const words =
                     `John adalah seorang Software Engineer berpengalaman dengan keahlian
-                      dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
-                      dan berbagai teknologi backend. Ia selalu fokus pada clean code,
-                      skalabilitas, dan performa aplikasi.`.split(" ");
+                        dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
+                        dan berbagai teknologi backend. Ia selalu fokus pada clean code,
+                        skalabilitas, dan performa aplikasi.`.split(" ");
 
                   const preview = words.slice(0, 20).join(" ");
                   return preview + (words.length > 20 ? "..." : "");
@@ -304,9 +337,9 @@ const CardJunior = () => {
                 {(() => {
                   const words =
                     `John adalah seorang Software Engineer berpengalaman dengan keahlian
-                      dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
-                      dan berbagai teknologi backend. Ia selalu fokus pada clean code,
-                      skalabilitas, dan performa aplikasi.`.split(" ");
+                        dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
+                        dan berbagai teknologi backend. Ia selalu fokus pada clean code,
+                        skalabilitas, dan performa aplikasi.`.split(" ");
 
                   const preview = words.slice(0, 20).join(" ");
                   return preview + (words.length > 20 ? "..." : "");
@@ -338,9 +371,9 @@ const CardJunior = () => {
                 {(() => {
                   const words =
                     `John adalah seorang Software Engineer berpengalaman dengan keahlian
-                      dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
-                      dan berbagai teknologi backend. Ia selalu fokus pada clean code,
-                      skalabilitas, dan performa aplikasi.`.split(" ");
+                        dalam membangun aplikasi web modern menggunakan Next.js, TypeScript,
+                        dan berbagai teknologi backend. Ia selalu fokus pada clean code,
+                        skalabilitas, dan performa aplikasi.`.split(" ");
 
                   const preview = words.slice(0, 20).join(" ");
                   return preview + (words.length > 20 ? "..." : "");

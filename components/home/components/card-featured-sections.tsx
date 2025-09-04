@@ -13,7 +13,6 @@ import {
   AvatarImage,
   AvatarSkills,
 } from "@/components/ui/avatar";
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { IconComponents } from "@tabler/icons-react";
 
 const data = Array.from({ length: 33 }, (_, i) => ({

@@ -19,8 +19,9 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useThemeConfig } from "@/components/active-theme";
 
-import dataUrl from "@/app/api/nav/route";
 import { useRouter } from "next/navigation";
+
+import dataUrl from "@/lib/navbar-data";
 
 export default function SearchNav() {
   const { activeTheme } = useThemeConfig();
@@ -41,9 +42,10 @@ export default function SearchNav() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const filteredPages = dataUrl.navMain.filter((page) =>
-    page.title.toLowerCase().includes(query.toLowerCase())
-  );
+  const filteredPages =
+    dataUrl?.navMain.filter((page) =>
+      page.title.toLowerCase().includes(query.toLowerCase())
+    ) || [];
 
   React.useEffect(() => {
     setSelectedIndex(-1);

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import dataUrl from "@/app/api/nav/route";
+import dataUrl from "@/lib/navbar-data";
 
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";

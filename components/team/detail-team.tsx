@@ -3,8 +3,7 @@ import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 
 import { TiArrowBackOutline } from "react-icons/ti";
 import Image from "next/image";
-import { tools } from "@/app/api/tools/route";
-import { decodeReply } from "next/dist/server/app-render/entry-base";
+import { useEffect, useState } from "react";
 
 type Member = {
   id: number;
@@ -24,9 +23,20 @@ type Member = {
   email?: string;
 };
 
+type Tool = {
+  id: number;
+  name: string;
+  icons: string;
+};
+
 const DetailTeam = ({ member }: { member: Member }) => {
-  const fileId = "1wzeNbs_EtFWE_jyDXOfG3tUmV1i7FAKy";
-  const driveUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+  const [tools, setTools] = useState<Tool[]>([]);
+
+  useEffect(() => {
+    fetch("/api/tools")
+      .then((res) => res.json())
+      .then((data) => setTools(data));
+  }, []);
 
   return (
     <div>
@@ -37,7 +47,6 @@ const DetailTeam = ({ member }: { member: Member }) => {
             Back
           </span>
         </Link>
-        <Image src={driveUrl} alt="foto" width={100} height={100}  />
         <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center px-0">
           <div className="col-span-2">
             <h1 className="text-3xl font-bold mb-2">About</h1>

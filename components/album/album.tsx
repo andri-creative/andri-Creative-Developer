@@ -1,4 +1,3 @@
-// import FlipBookCard from "../flipbook/FlipBook";
 
 import MyAlbum from "../flipbook/FlipBook";
 

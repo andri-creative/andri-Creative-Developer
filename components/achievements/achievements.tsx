@@ -10,7 +10,26 @@ import {
   CardTitle,
 } from "../ui/card";
 
-import { achieveData } from "@/app/api/achievements/route";
+export type Achievement = {
+  id: number;
+  title: string;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className: string;
+  issuer: string;
+  label: string;
+  issueDate: string;
+  description: string;
+  category: string;
+  level: string;
+  link: string;
+  tags: string[];
+};
+
+import { useEffect } from "react";
+
 import {
   Pagination,
   PaginationContent,
@@ -21,14 +40,23 @@ import {
 } from "../ui/pagination";
 
 const Achievements = () => {
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+
+  useEffect(() => {
+    fetch("api/achievements")
+      .then((res) => res.json())
+      .then((data) => setAchievements(data))
+      .catch((err) => console.error("Error fetching achievements:", err));
+  }, []);
+
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(achieveData.length / itemsPerPage);
+  const totalPages = Math.ceil(achievements.length / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = achieveData.slice(startIndex, endIndex);
+  const currentItems = achievements.slice(startIndex, endIndex);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {

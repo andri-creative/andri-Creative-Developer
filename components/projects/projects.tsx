@@ -9,10 +9,28 @@ import {
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-import { projectsData } from "@/app/api/projects/route";
+// import { projectsData } from "@/app/api/projects/route";
 import { BsFillPinFill } from "react-icons/bs";
+import { useEffect, useState } from "react";
+
+export type ProjectsData = {
+  id: number;
+  title: string;
+  description: string;
+  skills: string[];
+  image: string;
+  status: "active" | "inactive";
+}[];
 
 const Projects = () => {
+  const [projectsData, setProjectsData] = useState<ProjectsData>([]);
+
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((res) => res.json())
+      .then((data) => setProjectsData(data));
+  }, []);
+
   const sortedProjects = [...projectsData].sort((a, b) => {
     if (a.status === "active" && b.status !== "active") return -1;
     if (a.status !== "active" && b.status === "active") return 1;
@@ -32,7 +50,7 @@ const Projects = () => {
           </CardDescription>
           <span className="block border-t border-dashed border-gray-800"></span>
         </CardHeader>
-        <CardContent  className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-5 px-4 lg:px-6">
+        <CardContent className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-5 px-4 lg:px-6">
           {sortedProjects.map((item) => (
             <Link key={item.id} href="#">
               <Card className="pt-0 relative">

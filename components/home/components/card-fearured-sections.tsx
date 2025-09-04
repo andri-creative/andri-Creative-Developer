@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Images from "next/image";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { PiCertificateThin } from "react-icons/pi";
 import { PiChatCircleDotsLight } from "react-icons/pi";
-import { achieveData } from "@/app/api/achievements/route";
 import { LiaBookSolid } from "react-icons/lia";
 
+export type Achievement = {
+  id: number;
+  title: string;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className: string;
+  issuer: string;
+  label: string;
+  issueDate: string;
+  description: string;
+  category: string;
+  level: string;
+  link: string;
+  tags: string[];
+};
+
 const CardAchievements = () => {
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+
+  useEffect(() => {
+    fetch("api/achievements")
+      .then((res) => res.json())
+      .then((data) => setAchievements(data))
+      .catch((err) => console.error("Error fetching achievements:", err));
+  }, []);
+
   return (
     <>
       <Card className="flex flex-col items-center text-center w-full p-4 h-full pt-6 pb-1 ">
@@ -23,7 +49,7 @@ const CardAchievements = () => {
         </CardHeader>
         <CardContent className="w-full  p-0">
           <div className="h-64 relative w-full flex items-end justify-center">
-            {achieveData.map((item, index) => (
+            {achievements.map((item, index) => (
               <div
                 key={item.id}
                 className={`absolute top-10 z-40 hover:z-50 hover:scale-110 transition-transform duration-300
