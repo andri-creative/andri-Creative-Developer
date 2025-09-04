@@ -1,0 +1,180 @@
+export const TeamData = [
+  {
+    id: 1,
+    name: "John Doe",
+    photo: "/foto/01.png",
+    roles: ["Fullstack Developer", "Team Lead"],
+    description:
+      "John adalah seorang senior fullstack developer dengan pengalaman lebih dari 8 tahun membangun aplikasi skala besar menggunakan Laravel, React, dan Next.js.",
+    education: {
+      degree: "Bachelor of Science in Computer Science",
+      institution: "Massachusetts Institute of Technology (MIT), USA",
+      graduation_year: 2014,
+      phone: "+1 234 567 890",
+    },
+    location: "San Francisco, USA",
+    level: "Senior",
+    tools: [17, 8, 12],
+    email: "johndoe@example.com",
+  },
+  {
+    id: 2,
+    name: "Sarah Lee",
+    photo: "/foto/01.png",
+    roles: ["Frontend Developer", "UI/UX Specialist"],
+    description:
+      "Sarah adalah seorang developer frontend senior yang ahli dalam membangun antarmuka modern dengan Node.js, Vue.js, dan MongoDB.",
+    education: {
+      degree: "Bachelor of Fine Arts in Graphic Design",
+      institution: "Rhode Island School of Design (RISD), USA",
+      graduation_year: 2016,
+    },
+    location: "New York, USA",
+    level: "Senior",
+    tools: [13, 7, 23],
+  },
+  {
+    id: 3,
+    name: "Michael Chen",
+    photo: "/foto/01.png",
+    roles: ["Backend Engineer", "System Architect"],
+    description:
+      "Michael adalah seorang backend engineer yang fokus pada arsitektur sistem besar, dengan keahlian Python, Django, dan PostgreSQL.",
+    education: {
+      degree: "Master of Science in Information Technology",
+      institution: "Stanford University, USA",
+      graduation_year: 2015,
+    },
+    location: "Seattle, USA",
+    level: "Senior",
+    tools: [27, 14, 21],
+  },
+  {
+    id: 4,
+    name: "Emily Tan",
+    photo: "/foto/01.png",
+    roles: ["Software Engineer", "Backend Specialist"],
+    description:
+      "Emily memiliki pengalaman luas dalam membangun aplikasi enterprise menggunakan Java dan Spring Boot dengan basis data MySQL.",
+    education: {
+      degree: "PhD in Computer Science",
+      institution: "University of California, Berkeley, USA",
+      graduation_year: 2018,
+    },
+    location: "Boston, USA",
+    level: "Senior",
+    tools: [27, 30, 22],
+  },
+  {
+    id: 5,
+    name: "David Kim",
+    photo: "/foto/01.png",
+    roles: ["Backend Developer", "Cloud Engineer"],
+    description:
+      "David adalah seorang software engineer senior yang ahli dalam Golang, gRPC, dan deployment dengan Kubernetes.",
+    education: {
+      degree: "Bachelor of Engineering in Software Engineering",
+      institution: "Carnegie Mellon University, USA",
+      graduation_year: 2013,
+    },
+    location: "Austin, USA",
+    level: "Senior",
+    tools: [15, 27, 23],
+  },
+  {
+    id: 6,
+    name: "Lisa Wong",
+    photo: "/foto/01.png",
+    roles: ["Mobile Developer", "Android Specialist"],
+    description:
+      "Lisa adalah seorang senior mobile developer dengan keahlian di Kotlin dan Android Studio.",
+    education: {
+      degree: "Bachelor of Computer Engineering",
+      institution: "University of Washington, USA",
+      graduation_year: 2015,
+    },
+    location: "Portland, USA",
+    level: "Senior",
+    tools: [19, 20],
+  },
+  {
+    id: 7,
+    name: "Ahmad Yani",
+    photo: "/foto/01.png",
+    roles: ["Junior Web Developer"],
+    description:
+      "Ahmad adalah pemula yang sedang belajar dasar-dasar web development menggunakan HTML, CSS, dan JavaScript.",
+    education: {
+      degree: "Diploma in Web Development",
+      institution: "Politeknik Negeri Jakarta, Indonesia",
+      graduation_year: 2023,
+    },
+    location: "Jakarta, Indonesia",
+    level: "Junior",
+    tools: [1, 2, 5],
+  },
+  {
+    id: 8,
+    name: "Maria Gomez",
+    photo: "/foto/01.png",
+    roles: ["Junior Frontend Developer"],
+    description:
+      "Maria sedang memulai karirnya sebagai developer dengan React Native dan Expo untuk membuat aplikasi mobile sederhana.",
+    education: {
+      degree: "Bachelor of Information Technology",
+      institution: "Universidad de Buenos Aires, Argentina",
+      graduation_year: 2022,
+    },
+    location: "Buenos Aires, Argentina",
+    level: "Junior",
+    tools: [8, 19],
+  },
+  {
+    id: 9,
+    name: "Ravi Kumar",
+    photo: "/foto/01.png",
+    roles: ["Junior Backend Developer"],
+    description:
+      "Ravi baru belajar backend development dengan PHP dan framework CodeIgniter untuk aplikasi kecil.",
+    education: {
+      degree: "Bachelor of Computer Applications",
+      institution: "Delhi University, India",
+      graduation_year: 2021,
+    },
+    location: "New Delhi, India",
+    level: "Junior",
+    tools: [16, 17],
+  },
+  {
+    id: 10,
+    name: "Anna Müller",
+    photo: "/foto/11.png",
+    roles: ["Junior Mobile Developer"],
+    description:
+      "Anna sedang mempelajari Flutter dan Dart untuk membuat aplikasi mobile sederhana.",
+    education: {
+      degree: "Diploma in Graphic & Web Design",
+      institution: "Berlin University of Applied Sciences, Germany",
+      graduation_year: 2022,
+    },
+    location: "Berlin, Germany",
+    level: "Junior",
+    tools: [20, 24],
+  },
+  {
+    id: 11,
+    name: "Hiroshi Tanaka",
+    photo: "/foto/11.png",
+    roles: ["Junior Software Developer"],
+    description:
+      "Hiroshi baru memulai karirnya sebagai developer dengan belajar C# dan .NET untuk aplikasi desktop sederhana.",
+    education: {
+      degree: "Bachelor of Software Engineering",
+      institution: "Tokyo Institute of Technology, Japan",
+      graduation_year: 2023,
+    },
+    location: "Tokyo, Japan",
+    level: "Junior",
+    tools: [14, 8],
+  },
+];
