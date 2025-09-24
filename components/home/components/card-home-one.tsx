@@ -53,19 +53,29 @@ const HomeCardTitle = () => {
               <Skeleton className="h-4 w-[80%]" />
             </>
           ) : (
-            <div className="line-clamp-1 flex gap-2 font-medium text-muted-foreground">
-              As a dedicated and detail-oriented Full-Stack Developer, I am a
-              graduate of Informatics Engineering from University 17 August 1945
-              Surabaya. My passion lies in building immersive and engaging web
-              applications by bridging the gap between intricate back-end logic
-              and user-centric front-end design.
-              <br />I have hands-on experience in creating responsive and
-              dynamic web applications using a modern tech stack that includes
-              Laravel, React.js, Express.js, and Next.js. My project portfolio
-              showcases my ability to manage the entire development lifecycle,
-              from designing databases and implementing complex business logic
-              for features like performance appraisals to building interactive
-              user interfaces with data visualization.
+            <div className="flex flex-col gap-2 text-muted-foreground">
+              <p>
+                I am a{" "}
+                <span className="font-medium">Full-Stack Web Developer</span>{" "}
+                with a strong foundation in Informatics Engineering and a
+                passion for creating impactful digital solutions.
+              </p>
+              <p>
+                I specialize in{" "}
+                <span className="font-medium">
+                  Laravel, React.js, Express.js, and Next.js
+                </span>{" "}
+                building applications that balance efficient back-end logic with
+                clean and engaging front-end design.
+              </p>
+              <p>
+                My focus is on{" "}
+                <span className="font-medium">
+                  scalability, performance, and user experience
+                </span>
+                , ensuring every project delivers real value for both users and
+                businesses.
+              </p>
             </div>
           )}
         </CardFooter>
@@ -76,6 +86,12 @@ const HomeCardTitle = () => {
 
 const HomeCardFoto = () => {
   const [loading, setLoading] = useState(true);
+
+  // simulasi loading
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -90,19 +106,21 @@ const HomeCardFoto = () => {
           className="w-full rounded-lg overflow-hidden"
         >
           <div className="relative w-full h-full min-h-[400px]">
-            {loading && (
+            {loading ? (
               <Skeleton className="absolute inset-0 w-full h-full rounded-lg" />
+            ) : (
+              <>
+                <Image
+                  src="/foto/01.png"
+                  alt="foto"
+                  fill
+                  className={`object-cover rounded-lg aspect-square object-top transition-opacity duration-500 ${
+                    loading ? "opacity-0" : "opacity-100"
+                  }`}
+                  onLoadingComplete={() => setLoading(false)}
+                />
+              </>
             )}
-
-            <Image
-              src="/foto/01.png"
-              alt="foto"
-              fill
-              className={`object-cover rounded-lg aspect-square object-top transition-opacity duration-500 ${
-                loading ? "opacity-0" : "opacity-100"
-              }`}
-              onLoadingComplete={() => setLoading(false)}
-            />
           </div>
         </Tilt>
       </Card>
@@ -157,6 +175,11 @@ const HomeCardWords = () => {
               &quot; In which situations do they work best, when do they fail
               us, and how can we determine whether we need them or should steer
               clear?&quot;
+            </blockquote>
+            <blockquote className="border-l-2 pl-6 italic">
+              &quot;When does something become our greatest ally, when does it
+              let us down, and how can we know whether to embrace it or let it
+              go?&quot;
             </blockquote>
 
             <blockquote className="border-l-2 pl-6 italic">

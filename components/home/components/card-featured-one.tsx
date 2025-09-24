@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { IconBrandCodesandbox } from "@tabler/icons-react";
 import {
@@ -18,32 +20,64 @@ import {
   CardServices,
 } from "./card-fearured-sections";
 
-const tags = {
-  pro: [
-    { gambar: "/projeck/01.png" },
-    { gambar: "/projeck/01.png" },
-    { gambar: "/projeck/01.png" },
-  ],
-  user: [
-    {
-      gambar: "/foto/01.png",
-    },
-    {
-      gambar: "/foto/02.png",
-    },
-    {
-      gambar: "/foto/03.png",
-    },
-    {
-      gambar: "/foto/04.png",
-    },
-    {
-      gambar: "/foto/05.png",
-    },
-  ],
-};
+interface ImageItem {
+  gambar: string;
+}
+
+interface AlbumItem {
+  id: string;
+  title: string;
+  width: number;
+  height: number;
+  url: string;
+  publicId: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 const CardFeaturedOne = () => {
+  const [tags, setTags] = React.useState<{
+    pro: ImageItem[];
+    user: ImageItem[];
+  }>({
+    pro: [
+      { gambar: "/projeck/01.png" },
+      { gambar: "/projeck/01.png" },
+      { gambar: "/projeck/01.png" },
+    ],
+    user: [],
+  });
+
+  React.useEffect(() => {
+    const fetchAlbum = async () => {
+      try {
+        const res = await fetch("/api/album");
+        if (!res.ok) throw new Error("Failed to fetch album");
+
+        const data: AlbumItem[] = await res.json();
+
+        // Hanya ambil gambar dengan tinggi > lebar (portrait)
+        const filtered = data.filter((item) => item.height > item.width);
+
+        // Map ke format { gambar: url }
+        const images = filtered.map((item) => ({
+          gambar: item.url,
+        }));
+
+        setTags((prev) => ({
+          ...prev,
+          user: images,
+        }));
+
+        console.log("album (portrait only):", filtered);
+      } catch (err) {
+        console.error("Error fetching album:", err);
+      }
+    };
+
+    fetchAlbum();
+  }, []);
+
   return (
     <>
       <Card className="@container/card">

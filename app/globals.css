@@ -532,3 +532,17 @@ body {
   background-size: 200% 200%;
   animation: gradient-x 12s ease infinite;
 }
+
+@keyframes wiggle-x {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px); /* geser kanan */
+  }
+}
+
+.animate-wiggle-x {
+  animation: wiggle-x 0.9s ease-in-out infinite;
+}

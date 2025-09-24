@@ -1,5 +1,6 @@
+// import MyAlbum from "../flipbook/FlipBook";
 
-import MyAlbum from "../flipbook/FlipBook";
+import MyAlbum from "../Album-conten";
 
 const Album = () => {
   return (

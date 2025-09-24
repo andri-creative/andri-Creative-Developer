@@ -8,6 +8,23 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "drive.google.com",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8000",
+      },
+      {
+        protocol: "https",
+        hostname: "backend-ts-lemon.vercel.app",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "http",
+        hostname: "backend-ts-lemon.vercel.app",
+      },
     ],
   },
 };

@@ -6,20 +6,20 @@ import { SiteHeader } from "@/components/site-header";
 import Team from "@/components/team/team";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-import Loader from "@/components/loader";
-import { useEffect, useState } from "react";
+// import Loader from "@/components/loader";
+// import { useEffect, useState } from "react";
 
 export default function Page() {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 5000);
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => setLoading(false), 5000);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  if (loading) {
-    return <Loader />;
-  }
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
   return (
     <>

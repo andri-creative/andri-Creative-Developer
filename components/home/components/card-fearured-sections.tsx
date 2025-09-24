@@ -49,21 +49,29 @@ const CardAchievements = () => {
         </CardHeader>
         <CardContent className="w-full  p-0">
           <div className="h-64 relative w-full flex items-end justify-center">
-            {achievements.map((item, index) => (
-              <div
-                key={item.id}
-                className={`absolute top-10 z-40 hover:z-50 hover:scale-110 transition-transform duration-300
-                ${index === 0 ? "left-0" : index === 1 ? "right-0" : ""}`}
-              >
-                <Images
-                  src={item.src}
-                  width={150}
-                  height={75}
-                  alt={item.alt}
-                  className={item.className}
-                />
-              </div>
-            ))}
+            {achievements.map((item, index) => {
+              const dynamicClass =
+                index === 0
+                  ? "object-cover rounded-md -rotate-12"
+                  : index === 1
+                  ? "object-cover rounded-md rotate-12"
+                  : "object-cover rounded-md";
+              return (
+                <div
+                  key={item.id}
+                  className={`absolute top-10 z-40 hover:z-50 hover:scale-110 transition-transform duration-300
+                  ${index === 0 ? "left-0" : index === 1 ? "right-0" : ""}`}
+                >
+                  <Images
+                    src={item.src}
+                    width={150}
+                    height={75}
+                    alt={item.title}
+                    className={dynamicClass}
+                  />
+                </div>
+              );
+            })}
             <Images
               src="/achieve/folder.png"
               width={150}

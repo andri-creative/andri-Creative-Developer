@@ -1,14 +1,13 @@
-import {
-  IconChartBar,
-  IconDashboard,
-  IconFolder,
-  IconListDetails,
-  IconUsers,
-} from "@tabler/icons-react";
-
 import { BiPhotoAlbum, BiChat } from "react-icons/bi";
 import { IoHomeOutline } from "react-icons/io5";
 import { TiContacts } from "react-icons/ti";
+import {
+  MdDashboard,
+  MdFolder,
+  MdBarChart,
+  MdListAlt,
+  MdGroup,
+} from "react-icons/md"; // React Icons Material
 
 const dataUrl = {
   user: {
@@ -27,27 +26,27 @@ const dataUrl = {
     {
       title: "About",
       url: "/about",
-      icon: IconListDetails,
+      icon: MdListAlt, // menggantikan IconListDetails
     },
     {
       title: "Achievements",
       url: "/achievements",
-      icon: IconChartBar,
+      icon: MdBarChart, // menggantikan IconChartBar
     },
     {
       title: "Dashboard",
       url: "/dashboard",
-      icon: IconDashboard,
+      icon: MdDashboard, // menggantikan IconDashboard
     },
     {
       title: "Projects",
       url: "/projects",
-      icon: IconFolder,
+      icon: MdFolder, // menggantikan IconFolder
     },
     {
       title: "Team",
       url: "/team",
-      icon: IconUsers,
+      icon: MdGroup, // menggantikan IconUsers
     },
     {
       title: "Chat",

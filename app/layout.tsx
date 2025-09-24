@@ -60,6 +60,7 @@ export const metadata: Metadata = {
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ActiveThemeProvider } from "@/components/active-theme";
+import { SkeletonProvider } from "@/context/SkeletonProvider";
 
 export default function RootLayout({
   children,
@@ -76,9 +77,11 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ActiveThemeProvider>{children}</ActiveThemeProvider>
-        </ThemeProvider>
+        <SkeletonProvider duration={3000}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ActiveThemeProvider>{children}</ActiveThemeProvider>
+          </ThemeProvider>
+        </SkeletonProvider>
       </body>
     </html>
   );
