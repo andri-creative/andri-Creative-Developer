@@ -1,28 +1,41 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { Minus, Plus } from "lucide-react";
+import { Bar, BarChart, ResponsiveContainer } from "recharts";
 
 import Lottie from "lottie-react";
 
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
+  DrawerClose,
+  DrawerContent,
   DrawerDescription,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
   DrawerContentCustom,
 } from "@/components/ui/drawer";
 
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 import sad from "@/public/emot/1.json";
 import confused from "@/public/emot/2.json";
 import neutral from "@/public/emot/3.json";
 import happy from "@/public/emot/4.json";
 import love from "@/public/emot/5.json";
+import starIcon from "@/public/emot/Star.json"
 
-import { Skeleton } from "@/components/ui/skeleton";
 export default function EmotPage() {
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [flyingEmoticons, setFlyingEmoticons] = useState<
@@ -34,7 +47,7 @@ export default function EmotPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedAnimation, setSelectedAnimation] = useState<any>(null);
-  const [isPageLoading, setIsPageLoading] = useState(true);
+
   const setButtonRef = (index: number) => (el: HTMLButtonElement | null) => {
     buttonRefs.current[index] = el;
   };
@@ -78,21 +91,21 @@ export default function EmotPage() {
     <div className="fixed bottom-8 right-8 z-50">
       <div className="flex items-center justify-center h-16 w-16">
         <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-          {isPageLoading ? (
-            <DrawerTriggerSkeleton />
-          ) : (
-            <DrawerTrigger asChild>
-              <Button
-                variant="outline"
-                onClick={() => setDrawerOpen(true)}
-                className="relative overflow-visible h-16 w-16 p-3 rounded-full border bg-blue-50 border-blue-200"
-              >
-                <span className="text-2xl transition-all duration-1000 ease-out inline-block">
-                  Star
-                </span>
-              </Button>
-            </DrawerTrigger>
-          )}
+          <DrawerTrigger asChild>
+            <Button
+              variant="outline"
+              onClick={() => setDrawerOpen(true)}
+              className="relative overflow-visible h-16 w-16 p-3 rounded-full border bg-blue-50 border-blue-200"
+            >
+              <span className="text-3xl transition-all duration-1000 ease-out inline-block">
+               <Lottie
+                  animationData={starIcon}
+                  loop={true}
+                  className="w-16"
+                />
+              </span>
+            </Button>
+          </DrawerTrigger>
 
           <DrawerContentCustom className="bg-transparent border-none shadow-none data-[state=open]:animate-none">
             <div className="mx-auto w-full h-full flex flex-col justify-between">
@@ -178,18 +191,6 @@ export default function EmotPage() {
           </DialogContent>
         </Dialog>
       </div>
-    </div>
-  );
-}
-
-function DrawerTriggerSkeleton() {
-  return (
-    <div className="relative">
-      <Skeleton className="h-16 w-16 rounded-full bg-blue-100 border-2 border-blue-200 animate-pulse">
-        <span className="flex items-center justify-center h-full text-2xl opacity-0">
-          Star
-        </span>
-      </Skeleton>
     </div>
   );
 }
