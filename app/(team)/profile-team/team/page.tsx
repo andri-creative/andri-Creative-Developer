@@ -15,8 +15,10 @@ import DropMenuUser from "@/components/team/components/DropdownMen-Team";
 import { profileTeamService } from "@/app/services/profileTeam";
 import ProfileImg from "@/components/team/components/profile-img";
 
+import { ProfileResponse } from "@/app/services/profileTeam";
+
 export default function TeamProfilePage() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<ProfileResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -6,10 +6,21 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const response = await api.post("/api/auth/verify-otp", body);
     return NextResponse.json(response.data);
-  } catch (error: any) {
+  } catch (error: unknown) {
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const err = error as {
+        response?: { data?: { error?: string }; status?: number };
+      };
+      return NextResponse.json(
+        { error: err.response?.data?.error || "OTP verification failed" },
+        { status: err.response?.status || 500 }
+      );
+    }
+
+    // Fallback untuk error selain Axios
     return NextResponse.json(
-      { error: error.response?.data?.error || "OTP verification failed" },
-      { status: error.response?.status || 500 }
+      { error: "Unexpected error occurred" },
+      { status: 500 }
     );
   }
 }

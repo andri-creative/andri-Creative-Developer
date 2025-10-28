@@ -25,7 +25,6 @@ import {
   Dribbble,
   Facebook,
 } from "lucide-react";
-import { useTheme } from "next-themes";
 import { PiTiktokLogoLight } from "react-icons/pi";
 import sendContact, { createServices } from "@/app/services/contactService";
 import { useState, useEffect } from "react";

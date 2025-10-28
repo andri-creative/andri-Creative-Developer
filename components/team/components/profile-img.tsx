@@ -15,16 +15,12 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
-import profileTeamService from "@/app/services/profileTeam";
+import { profileTeamService, ProfileResponse } from "@/app/services/profileTeam"; 
+// pastikan export ProfileResponse di profileTeam.ts (kamu sudah punya)
 
 interface ProfileImgProps {
-  profile: {
-    id: string | number;
-    foto?: string;
-  };
-  user: {
-    name?: string;
-  };
+  profile?: ProfileResponse["profile"] | null;
+  user?: ProfileResponse["profile"]["user"] | null;
 }
 
 export default function ProfileImg({ profile, user }: ProfileImgProps) {
@@ -42,6 +38,7 @@ export default function ProfileImg({ profile, user }: ProfileImgProps) {
   const handleUpload = async () => {
     try {
       if (!selectedFile) return alert("Pilih gambar dulu!");
+      if (!profile?.id) return alert("Profile ID tidak tersedia.");
 
       await profileTeamService.updateProfile({
         id: profile.id,
@@ -49,6 +46,7 @@ export default function ProfileImg({ profile, user }: ProfileImgProps) {
       });
 
       alert("Foto berhasil diperbarui ✅");
+      // idealnya update state lokal / refetch daripada reload
       window.location.reload();
     } catch (error) {
       console.error(error);
@@ -56,17 +54,22 @@ export default function ProfileImg({ profile, user }: ProfileImgProps) {
     }
   };
 
+  // fallback src string (Next Image memerlukan string)
+  const src =
+    imagePreview ||
+    (typeof profile?.foto === "string" && profile?.foto) ||
+    "/foto/03.png";
+
   return (
     <div className="justify-self-center text-center">
       <Image
-        src={imagePreview || profile?.foto || "/foto/03.png"}
+        src={src}
         alt={user?.name || "User Profile"}
         width={200}
         height={300}
         className="object-cover rounded-lg"
       />
 
-      {/* BUTTON OPEN DIALOG */}
       <Dialog>
         <DialogTrigger asChild>
           <Button className="mt-4" size="sm" variant="outline">
@@ -82,10 +85,9 @@ export default function ProfileImg({ profile, user }: ProfileImgProps) {
             </DialogDescription>
           </DialogHeader>
 
-          {/* PREVIEW DI DALAM DIALOG */}
           <div className="flex flex-col gap-4 items-center">
             <Image
-              src={imagePreview || profile?.foto || "/foto/03.png"}
+              src={src}
               alt="Preview"
               width={150}
               height={200}

@@ -19,9 +19,22 @@ type ProjectDetailProps = {
   }>;
 };
 
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  status: boolean | string;
+  demoUrl?: string;
+  repoUrl?: string;
+  features?: string[];
+  role?: string;
+  techStack?: string[];
+};
+
 export default function ProjectDetail({ params }: ProjectDetailProps) {
   const { id } = use(params);
-  const [project, setProject] = useState<any>(null);
+  const [project, setProject] = useState<Project | null>(null);
 
   useEffect(() => {
     fetch(`/api/projects/${id}`)

@@ -21,10 +21,19 @@ export async function PUT(request: NextRequest) {
     });
 
     return NextResponse.json(response.data);
-  } catch (error: any) {
-    return NextResponse.json(
-      { error: error.response?.data?.error || "Profile update failed" },
-      { status: error.response?.status || 500 }
-    );
+  } catch (error: unknown) {
+    let errorMessage = "Profile update failed";
+    let statusCode = 500;
+
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const err = error as {
+        response?: { data?: { error?: string }; status?: number };
+      };
+
+      errorMessage = err.response?.data?.error || errorMessage;
+      statusCode = err.response?.status || statusCode;
+    }
+
+    return NextResponse.json({ error: errorMessage }, { status: statusCode });
   }
 }
