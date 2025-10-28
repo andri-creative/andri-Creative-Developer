@@ -25,6 +25,10 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "backend-ts-lemon.vercel.app",
       },
+      {
+        protocol: "http",
+        hostname: "via.placeholder.com",
+      },
     ],
   },
 };

@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Portfolio Andri",
     images: [
       {
-        url: "https://yourdomain.com/og-image.jpg", // ganti dengan gambar preview
+        url: "https://yourdomain.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Portfolio Andri",

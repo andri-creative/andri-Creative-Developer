@@ -69,7 +69,7 @@ const CardFeaturedOne = () => {
           user: images,
         }));
 
-        console.log("album (portrait only):", filtered);
+        // console.log("album (portrait only):", filtered);
       } catch (err) {
         console.error("Error fetching album:", err);
       }

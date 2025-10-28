@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { RowsPhotoAlbum } from "react-photo-album";
 import "react-photo-album/rows.css";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useSkeleton } from "@/context/SkeletonProvider"; // ambil hook skeleton global
+import { useSkeleton } from "@/context/SkeletonProvider";
 
 type AlbumItem = {
   id: string;
@@ -44,7 +44,6 @@ export default function MyAlbum() {
   }, []);
 
   if (loading) {
-    // Tampilkan skeleton saat loading global true
     return (
       <div className="w-full text-white">
         <h2 className="text-2xl font-semibold mb-4">Album</h2>

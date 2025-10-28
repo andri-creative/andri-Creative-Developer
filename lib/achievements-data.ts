@@ -2,7 +2,7 @@ export const achievementsData = [
   {
     id: 1,
     title: "Cara Buat Server Proxmox-mu Anti Down",
-    src: "/achieve/01.png",
+    src: "/achieve/01.pdf",
     issuer: "ID Networkers",
     label: "issued on",
     issueDate: "Juni 2025",

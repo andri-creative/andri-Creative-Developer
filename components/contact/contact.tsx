@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardContent,
@@ -5,6 +6,15 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+
+import dynamic from "next/dynamic";
+
+// Import RichTextEditor secara dinamis agar hanya jalan di client
+// const RichTextEditor = dynamic(
+//   () =>
+//     import("@enipx/react-rich-text-editor").then((mod) => mod.RichTextEditor),
+//   { ssr: false }
+// );
 
 const Contact = () => {
   return (
@@ -24,9 +34,7 @@ const Contact = () => {
             </CardTitle>
             <Card></Card>
             <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                
-              </Card>
+              <Card></Card>
               <Card></Card>
               <Card></Card>
               <Card></Card>
@@ -41,7 +49,22 @@ const Contact = () => {
               <Card></Card>
               <Card></Card>
             </div>
-            <Card></Card>
+            <Card className="p-0">
+              {/* <RichTextEditor
+                value={`<p>Hi</p>`}
+                onChange={(value: string) => {
+                  console.log(value);
+                }}
+                containerStyle={{
+                  border: `1px solid rgba(0,0,0,0.2)`,
+                  minHeight: "70px",
+                  borderRadius: "10px",
+                  padding: "0 1rem",
+                  fontSize: "0.85rem",
+                  paddingTop: "1rem",
+                }}
+              /> */}
+            </Card>
             <Card></Card>
           </div>
         </CardContent>

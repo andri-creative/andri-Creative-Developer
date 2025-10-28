@@ -2,52 +2,49 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-
 import {
   Card,
   CardContent,
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-
-export type Education = {
-  degree: string;
-  institution: string;
-  graduation_year: number;
-  phone: string;
-};
-
-export type TeamMember = {
-  id: number;
-  name: string;
-  photo: string;
-  roles: string[];
-  description: string;
-  education: Education;
-  location: string;
-  level: string;
-  tools: number[];
-  email: string;
-};
-
-export type TeamData = {
-  members: TeamMember[];
-  education: Education[];
-};
+import { profileServise } from "@/app/services/teamProfile";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const CardSenior = () => {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [teamMembers, setTeamMembers] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/team")
-      .then((res) => res.json())
-      .then((data) => setTeamMembers(data));
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const res = await profileServise.getProfileAll();
+        if (res?.success) {
+          const formatted = res.data.map((item: any) => ({
+            id: item.id,
+            name: item.name,
+            photo: item.profile?.foto || "/default-avatar.png",
+            roles: item.profile?.roles?.map((r: any) => r.title) || [],
+            description: item.profile?.bio || "",
+          }));
+          setTeamMembers(formatted);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
   }, []);
+
+  if (isLoading) {
+    return <CardSeniorSkeleton />;
+  }
 
   return (
     <Swiper
@@ -58,34 +55,22 @@ const CardSenior = () => {
         disableOnInteraction: false,
       }}
       breakpoints={{
-        640: {
-          // sm
-          slidesPerView: 1,
-        },
-        768: {
-          // md
-          slidesPerView: 2,
-        },
-        1024: {
-          // lg
-          slidesPerView: 3,
-        },
-        1280: {
-          // xl
-          slidesPerView: 4,
-        },
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+        1280: { slidesPerView: 4 },
       }}
       modules={[Autoplay]}
-      className="mySwiper w-full h-full "
+      className="mySwiper w-full h-full"
     >
       {teamMembers.map((member) => (
         <SwiperSlide key={member.id}>
           <Link href={`/team/detail-team/${member.id}`}>
-            <Card className="pt-0">
+            <Card className="pt-0 cursor-pointer hover:shadow-lg transition-shadow">
               <div className="relative w-full h-96">
                 <Image
                   src={member.photo}
-                  alt={member.name + member.id}
+                  alt={member.name}
                   fill
                   className="rounded-t-lg object-cover object-[center_10%]"
                 />
@@ -112,6 +97,30 @@ const CardSenior = () => {
     </Swiper>
   );
 };
+
+// === SKELETON KHUSUS CARD SENIOR (untuk Swiper) ===
+function CardSeniorSkeleton() {
+  const slideCounts = [1, 2, 3, 4]; // xl: 4
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      {slideCounts.map((_, i) => (
+        <div key={`card-skeleton-${i}`} className="space-y-3">
+          <Skeleton className="w-full h-96 rounded-t-lg bg-gray-200" />
+          <div className="p-4 space-y-2">
+            <Skeleton className="h-6 w-3/4 rounded-md" />
+            <Skeleton className="h-4 w-1/2 rounded-md" />
+            <div className="space-y-1">
+              <Skeleton className="h-4 w-full rounded-md" />
+              <Skeleton className="h-4 w-5/6 rounded-md" />
+              <Skeleton className="h-4 w-4/5 rounded-md" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 const CardJunior = () => {
   return (

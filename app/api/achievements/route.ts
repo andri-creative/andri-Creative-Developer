@@ -7,7 +7,8 @@
 
 import { NextResponse } from "next/server";
 import axios from "axios";
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+const API_URL = "https://backend-ts-lemon.vercel.app";
 
 export async function GET() {
   try {
