@@ -34,7 +34,7 @@ export default function MyAlbum() {
           src: item.url,
           width: item.width,
           height: item.height,
-          alt: item.title || "",
+          alt: item.id || "",
         }));
         setPhotos(mapped);
       })
