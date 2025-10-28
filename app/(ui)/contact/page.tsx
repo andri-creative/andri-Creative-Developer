@@ -296,7 +296,7 @@ export default function HelpPage() {
                     Available 24/7 for urgent issues
                   </p>
                   <p className="text-lg font-semibold text-gray-900 dark:text-gray-50 mt-1">
-                    +1 (555) 123-4567
+                    +62 812-4919-2305
                   </p>
                 </div>
                 <div>
@@ -307,7 +307,7 @@ export default function HelpPage() {
                     Typically responds within 2 hours
                   </p>
                   <p className="text-lg font-semibold text-gray-900 dark:text-gray-50 mt-1">
-                    support@company.com
+                    andri.dev.code@gmail.com
                   </p>
                 </div>
               </CardContent>
