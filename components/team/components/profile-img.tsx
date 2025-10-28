@@ -17,7 +17,17 @@ import { Input } from "@/components/ui/input";
 
 import profileTeamService from "@/app/services/profileTeam";
 
-export default function ProfileImg({ profile, user }: any) {
+interface ProfileImgProps {
+  profile: {
+    id: string | number;
+    foto?: string;
+  };
+  user: {
+    name?: string;
+  };
+}
+
+export default function ProfileImg({ profile, user }: ProfileImgProps) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -34,8 +44,8 @@ export default function ProfileImg({ profile, user }: any) {
       if (!selectedFile) return alert("Pilih gambar dulu!");
 
       await profileTeamService.updateProfile({
-        id: profile.id, // ⬅️ WAJIB, karena PUT perlu ID
-        foto: selectedFile, // ⬅️ Name harus `foto`
+        id: profile.id,
+        foto: selectedFile,
       });
 
       alert("Foto berhasil diperbarui ✅");
