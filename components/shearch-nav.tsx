@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { Button } from "./ui/button";
 import {
@@ -95,9 +95,12 @@ export default function SearchNav() {
             className="flex items-center justify-between w-64"
           >
             <span>Search documentation...</span>
-            <Badge className="ml-2 pointer-events-none bg-transparent border text-gray-700 dark:text-gray-100 border-gray-700">
-              Ctrl K
-            </Badge>
+
+            <KbdGroup>
+              <Kbd>Ctrl</Kbd>
+              <span>+</span>
+              <Kbd>K</Kbd>
+            </KbdGroup>
           </Button>
         </DialogTrigger>
 
