@@ -13,7 +13,7 @@ const dataUrl = {
   user: {
     name: "Andrianto",
     label: "AN",
-    username: "@Dricode",
+    username: "@Creative",
     avatar: "/user/01.png",
     verified: "verified.png",
   },
