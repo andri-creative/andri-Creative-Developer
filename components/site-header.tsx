@@ -6,7 +6,6 @@ import { ModeToggle } from "./mode-toggle";
 import SearchNav from "./shearch-nav";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
-import SiteStar from "./site-star";
 
 export function SiteHeader() {
   const [loading, setLoading] = useState(true);
